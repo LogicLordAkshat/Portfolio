@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 
@@ -7,13 +8,13 @@ import { cn } from "@/lib/utils";
 export const PinContainer = ({
   children,
   title,
-  href,
+  href, // Ensure href is destructured here
   className,
   containerClassName,
 }: {
   children: React.ReactNode;
   title?: string;
-  href?: string;
+  href?: string; // Ensure href is typed here
   className?: string;
   containerClassName?: string;
 }) => {
@@ -48,31 +49,33 @@ export const PinContainer = ({
           style={{
             transform: transform,
           }}
-          // remove  bg-black
-          className="absolute left-1/2 p-4 top-1/2  flex justify-start items-start  rounded-2xl  shadow-[0_8px_16px_rgb(0_0_0/0.4)] border border-white/[0.1] group-hover/pin:border-white/[0.2] transition duration-700 overflow-hidden"
+          // MODIFIED: Increased border width, adjusted border opacity, and added shadow for glow
+          className="absolute left-1/2 p-4 top-1/2 flex justify-start items-start rounded-2xl shadow-[0_8px_16px_rgb(0_0_0/0.4)]
+                     border-4 border-purple/[0.3] group-hover/pin:border-purple/[0.5]
+                     shadow-lg shadow-purple-500/50 group-hover/pin:shadow-purple-500/80 transition duration-700 overflow-hidden"
         >
           <div className={cn(" relative z-50 ", className)}>{children}</div>
         </div>
       </div>
-      <PinPerspective title={title} href={href} />
+      <PinPerspective title={title} href={href} /> {/* MODIFIED: Pass href to PinPerspective */}
     </div>
   );
 };
 
 export const PinPerspective = ({
   title,
-  href,
+  href, // Ensure href is destructured here
 }: {
   title?: string;
-  href?: string;
+  href?: string; // Ensure href is typed here
 }) => {
   return (
-    // change w-96 to w-full
+    // Changed w-96 to w-full as per user's comment
     <motion.div className="pointer-events-none w-full h-80 flex items-center justify-center opacity-0 group-hover/pin:opacity-100 z-[60] transition duration-500">
       <div className=" w-full h-full -mt-7 flex-none  inset-0">
         <div className="absolute top-0 inset-x-0  flex justify-center">
           <a
-            href={href}
+            href={href} // MODIFIED: Use the href prop here
             target={"_blank"}
             className="relative flex space-x-2 items-center z-10 rounded-full bg-zinc-950 py-0.5 px-4 ring-1 ring-white/10 "
           >

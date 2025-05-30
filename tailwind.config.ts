@@ -28,10 +28,11 @@ const config = {
     extend: {
       colors: {
         black: {
-          DEFAULT: "#000",
-          100: "#000319",
-          200: "rgba(17, 25, 40, 0.75)",
-          300: "rgba(255, 255, 255, 0.125)",
+          DEFAULT: "#000000", // Pure black
+          100: "#000000",
+          200: "rgba(0, 0, 0, 0.75)",
+          300: "rgba(0, 0, 0, 0.125)",
+          900: "#000000",
         },
         white: {
           DEFAULT: "#FFF",
@@ -39,10 +40,27 @@ const config = {
           200: "#C1C2D3",
         },
         blue: {
-          "100": "#E4ECFF",
+          "100": "#000000",
         },
-        purple: "#CBACF9",
-        border: "hsl(var(--border))",
+        purple: {
+          DEFAULT: "#9333EA", // A more vibrant purple for 'border-purple'
+          100: "#A78BFA",    // A lighter, vibrant purple for 'text-purple-100'
+        },
+        // ADDED: Explicit pink color palette for consistency
+        pink: {
+          50: '#fdf2f8',
+          100: '#fce7f3',
+          200: '#fbcfe8',
+          300: '#f9a8d4',
+          400: '#f472b6',
+          500: '#ec4899', // This is the shade used in Hero.tsx
+          600: '#db2777',
+          700: '#be185d',
+          800: '#9d174d',
+          900: '#831843',
+          950: '#500724',
+        },
+        border: "#000000",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
@@ -148,18 +166,35 @@ const config = {
         },
       },
       animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
-        spotlight: "spotlight 2s ease .75s 1 forwards",
-        shimmer: "shimmer 2s linear infinite",
-        first: "moveVertical 30s ease infinite",
-        second: "moveInCircle 20s reverse infinite",
-        third: "moveInCircle 40s linear infinite",
-        fourth: "moveHorizontal 40s ease infinite",
-        fifth: "moveInCircle 20s ease infinite",
-        scroll:
-          "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
-      },
+  // Accordion animations: Slightly increased duration for a smoother, less abrupt feel
+  "accordion-down": "accordion-down 0.3s ease-out",
+  "accordion-up": "accordion-up 0.3s ease-out",
+
+  // Spotlight effect:
+  // - Increased duration to 7s for a slower, more graceful reveal.
+  // - Changed easing to 'ease-in-out' for a smoother start and end, making it feel more organic.
+  spotlight: "spotlight 4s ease-in-out 0s 1 forwards",
+
+  // Shimmer effect:
+  // - Slightly increased duration to 2.5s for a more relaxed and premium feel.
+  // - Keeping 'linear' as it's often best for continuous, uniform movement.
+  shimmer: "shimmer 2.5s linear infinite",
+
+  // Background Gradient Animation circles (first, second, third, fourth, fifth):
+  // - Increased durations slightly for even more subtle and expansive movement.
+  // - Changed 'ease' to 'ease-in-out' for a more fluid, natural acceleration and deceleration,
+  //   making the floating circles feel more ethereal.
+  // - 'third' remains 'linear' if it's intended for constant, uniform circular motion.
+  first: "moveVertical 35s ease-in-out infinite",
+  second: "moveInCircle 25s reverse ease-in-out infinite",
+  third: "moveInCircle 45s linear infinite", // Can be changed to ease-in-out if desired
+  fourth: "moveHorizontal 45s ease-in-out infinite",
+  fifth: "moveInCircle 25s ease-in-out infinite",
+
+  // Scroll animation (kept as is, as it uses CSS variables)
+  scroll:
+    "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
+},
     },
   },
   plugins: [

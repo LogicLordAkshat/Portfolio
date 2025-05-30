@@ -10,27 +10,28 @@ const World = dynamic(() => import("./Globe").then((m) => m.World), {
 const GridGlobe = () => {
   const globeConfig = {
     pointSize: 4,
-    globeColor: "#062056",
+    globeColor: "#4C1D95", // Deep purple to match the theme
     showAtmosphere: true,
-    atmosphereColor: "#FFFFFF",
+    atmosphereColor: "#FFD6F5", // Soft luminous pink for atmosphere
     atmosphereAltitude: 0.1,
-    emissive: "#062056",
+    emissive: "#4C1D95", // Match globe color for subtle glow
     emissiveIntensity: 0.1,
     shininess: 0.9,
-    polygonColor: "rgba(255,255,255,0.7)",
-    ambientLight: "#38bdf8",
-    directionalLeftLight: "#ffffff",
+    polygonColor: "rgba(255,255,255,0.7)", // Keep polygons light for visibility
+    ambientLight: "#BCA0DC", // Soft purple ambient light
+    directionalLeftLight: "#ffffff", // Keep directional lights white for general illumination
     directionalTopLight: "#ffffff",
     pointLight: "#ffffff",
     arcTime: 1000,
     arcLength: 0.9,
     rings: 1,
     maxRings: 3,
-    initialPosition: { lat: 22.3193, lng: 114.1694 },
+    initialPosition: { lat: 26.8467, lng: 80.9462 }, // Set to Lucknow, India
     autoRotate: true,
     autoRotateSpeed: 0.5,
   };
-  const colors = ["#06b6d4", "#3b82f6", "#6366f1"];
+  // Updated colors to vibrant pink and purple shades for arcs
+  const colors = ["#8B5CF6", "#EC4899", "#DDA0DD", "#C084FC", "#F472B6"];
   const sampleArcs = [
     {
       order: 1,
@@ -395,36 +396,11 @@ const GridGlobe = () => {
   ];
 
   return (
-    // remove dark:bg-black bg-white h-screen md:h-auto  w-full flex-row py-20
-    // change absolute -left-5 top-36, add w-full h-full md:top-40
     <div className="flex items-center justify-center absolute -left-5 top-36 md:top-40 w-full h-full">
-      {/* remove h-full md:h-[40rem] */}
       <div className="max-w-7xl mx-auto w-full relative overflow-hidden h-96 px-4">
-        {/* remove these text divs */}
-        {/* <motion.div
-          initial={{
-            opacity: 0,
-            y: 20,
-          }}
-          animate={{
-            opacity: 1,
-            y: 0,
-          }}
-          transition={{
-            duration: 1,
-          }}
-          className="div"
-        >
-          <h2 className="text-center text-xl md:text-4xl font-bold text-black dark:text-white">
-            We sell soap worldwide
-          </h2>
-          <p className="text-center text-base md:text-lg font-normal text-neutral-700 dark:text-neutral-200 max-w-md mt-2 mx-auto">
-            This globe is interactive and customizable. Have fun with it, and
-            don&apos;t forget to share it.
-          </p>
-        </motion.div> */}
-        <div className="absolute w-full bottom-0 inset-x-0 h-40 bg-gradient-to-b pointer-events-none select-none from-transparent dark:to-black to-white z-40" />
-        {/* remove -bottom-20 */}
+        {/* The text divs were removed as per previous instructions */}
+        {/* Fade gradient at the bottom, adjusted to blend with dark purple background */}
+        <div className="absolute w-full bottom-0 inset-x-0 h-40 bg-gradient-to-b pointer-events-none select-none from-transparent to-[rgb(60,0,80)] z-40" />
         <div className="absolute w-full h-72 md:h-full z-10">
           <World data={sampleArcs} globeConfig={globeConfig} />
         </div>

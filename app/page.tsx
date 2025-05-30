@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { navItems } from "@/data";
+import { navItems, techStack } from "@/data"; // MODIFIED: Import techStack
 
 import Hero from "@/components/Hero";
 import Grid from "@/components/Grid";
@@ -10,6 +10,7 @@ import Approach from "@/components/Approach";
 import Experience from "@/components/Experience";
 import RecentProjects from "@/components/RecentProjects";
 import { FloatingNav } from "@/components/ui/FloatingNavbar";
+import { TechStackMarquee } from "@/components/TechStackMarquee"; // NEW: Import TechStackMarquee
 
 const Home = () => {
   return (
@@ -18,6 +19,8 @@ const Home = () => {
         <FloatingNav navItems={navItems} />
         <Hero />
         <Grid />
+        {/* NEW: Tech Stack Marquee Section */}
+        <TechStackMarquee items={techStack} direction="right" speed="normal" />
         <RecentProjects />
         <Clients />
         <Experience />
