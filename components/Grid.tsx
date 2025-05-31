@@ -4,16 +4,7 @@ import { BentoGrid, BentoGridItem } from "./ui/BentoGrid";
 const Grid = () => {
   return (
     <section id="about">
-      <h2
-        className="heading text-center mb-4 bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 bg-clip-text text-transparent drop-shadow-2xl"
-        style={{
-          WebkitBackgroundClip: 'text', // Explicitly set for Webkit browsers
-          WebkitTextFillColor: 'transparent', // Explicitly set for Webkit browsers
-          color: 'transparent', // Ensures base color is transparent for proper fill
-        }}
-      >
-        About Me
-      </h2>
+      {/* REMOVED: The "About Me" heading was removed as it's already present in app/page.tsx */}
       <BentoGrid className="w-full py-20">
         {gridItems.map((item, i) => (
           <BentoGridItem
@@ -21,8 +12,6 @@ const Grid = () => {
             key={i}
             title={item.title}
             description={item.description}
-            // remove icon prop
-            // remove original classname condition
             className={item.className}
             img={item.img}
             imgClassName={item.imgClassName}

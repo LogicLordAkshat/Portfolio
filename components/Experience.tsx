@@ -21,16 +21,17 @@ const Experience = () => {
                 fill="#4C1D95" // Violet-900 (Deep Purple)
               />
             </div>
-      <div className="w-full h-full absolute top-0 left-0 z-0 overflow-hidden"> {/* Adjusted for full height of section */}
-        <Image
-          src="/footer-grid.svg" // Path to your grid SVG
-          alt="background grid"
-          layout="fill" // Ensures the image covers the container
-          objectFit="cover" // Covers the area without distortion
-          className="opacity-80 mix-blend-screen" // Matching opacity and blend mode from Footer/RecentProjects
-          priority // Prioritize loading for LCP
-        />
-      </div>
+      <div className="w-full h-full absolute top-0 left-0 z-0 overflow-hidden">
+  <Image
+    src="/footer-grid.svg"
+    alt="background grid"
+    fill  // replaces layout="fill"
+    style={{ objectFit: 'cover' }}  // replaces objectFit="cover"
+    className="opacity-80 mix-blend-screen"
+    priority
+  />
+</div>
+
 
       <h1 className="heading relative z-10"> {/* Added relative z-10 to keep heading above grid */}
         My <span className="bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">work experience</span> {/* MODIFIED: Applied gradient text effect */}

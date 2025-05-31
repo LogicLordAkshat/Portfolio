@@ -21,16 +21,17 @@ const Footer = () => {
                       fill="#4C1D95" // Violet-900 (Deep Purple)
                     />
                   </div>
-      <div className="w-full absolute left-0 -bottom-72 min-h-96 z-0">
-        <Image
-          src="/footer-grid.svg"
-          alt="grid"
-          layout="fill" // Ensures the image covers the container
-          objectFit="cover" // Covers the area without distortion
-          className="opacity-80 mix-blend-screen" // Adjusted opacity from 0.6 to 0.8 for more visibility
-          priority // Prioritize loading for LCP (optional, but good for consistency)
-        />
-      </div>
+      <div className="w-full absolute left-0 -bottom-72 min-h-26 z-0 relative">
+  <Image
+    src="/footer-grid.svg"
+    alt="grid"
+    fill // replaces layout="fill"
+    style={{ objectFit: 'cover' }} // replaces objectFit="cover"
+    className="opacity-80 mix-blend-screen"
+    priority
+  />
+</div>
+
 
       <div className="flex flex-col items-center relative z-10">
         <h1 className="heading lg:max-w-[45vw] text-center">

@@ -67,7 +67,7 @@ export const gridItems = [
     title: "Do you want to start a project together?",
     description: "",
     className: "lg:col-span-2 md:col-span-3 md:row-span-1",
-    img: "/b6.svg",
+    img: "",
     spareImg: "",
     imgClassName: "",
     titleClassName: "justify-center md:max-w-full max-w-60 text-center",
@@ -88,7 +88,7 @@ export const projects = [
     title: "Yoom - Video Conferencing App",
     des: "Simplify your video conferencing experience with Yoom, a seamless and secure platform for virtual collaboration.",
     img: "/p2.svg",
-    iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/stream.svg", "/c.svg"],
+    iconLists: ["/next.js(2).svg", "/tail.svg", "/ts.svg", "/stream.svg", "/c.svg"],
     link: "https://www.ui.yoom.com", // MODIFIED: Added https://www. prefix
   },
   {
@@ -104,7 +104,7 @@ export const projects = [
     title: "Animated Apple Iphone 3D Website",
     des: "Recreated the Apple iPhone 15 Pro website, combining GSAP animations and Three.js 3D effects..",
     img: "/p4.svg",
-    iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/three.svg", "/gsap.svg"],
+    iconLists: ["/next.js(2).svg", "/tail.svg", "/ts.svg", "/three.svg", "/gsap.svg"],
     link: "https://www.ui.apple.com", // MODIFIED: Added https://www. prefix
   },
 ];

@@ -30,17 +30,18 @@ const Hero = () => {
       {/* Background with Grid Image - REFERENCED FROM FOOTER */}
       {/* This div now acts as the container for the grid image, similar to footer */}
       <div className="h-screen w-full absolute top-0 left-0 flex items-center justify-center z-0">
-        <Image
-          src="/footer-grid.svg" // Path to your grid SVG
-          alt="background grid"
-          layout="fill" // Ensures the image covers the container
-          objectFit="cover" // Covers the area without distortion
-          className="opacity-60 mix-blend-screen" // Adjusted opacity from 0.4 to 0.6 for more visibility
-          priority // Prioritize loading for LCP
-        />
-        {/* Radial Gradient for Fade Effect - Kept for consistency with original Hero */}
-        <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
-      </div>
+  <Image
+    src="/footer-grid.svg" // Path to your grid SVG
+    alt="background grid"
+    fill  // updated prop, no value
+    style={{ objectFit: 'cover' }}  // new way to handle objectFit
+    className="opacity-60 mix-blend-screen" // Adjusted opacity for visibility
+    priority // Prioritize loading for LCP
+  />
+  {/* Radial Gradient for Fade Effect - Kept for consistency with original Hero */}
+  <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
+</div>
+
 
       {/* Content Section - Adjusted for left alignment and picture box */}
       {/* This container uses flexbox to arrange items. On small screens (default), it's a column (flex-col)

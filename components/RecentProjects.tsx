@@ -8,15 +8,16 @@ const RecentProjects = () => {
     <div id="projects" className="py-20 bg-black text-white relative"> {/* MODIFIED: Added id="projects" */}
       {/* Background grid - REFERENCED FROM FOOTER */}
       <div className="w-full h-full absolute top-0 left-0 z-0 overflow-hidden"> {/* Adjusted for full height of section */}
-        <Image
-          src="/footer-grid.svg" // Path to your grid SVG
-          alt="background grid"
-          layout="fill" // Ensures the image covers the container
-          objectFit="cover" // Covers the area without distortion
-          className="opacity-80 mix-blend-screen" // Matching opacity and blend mode from Footer
-          priority // Prioritize loading for LCP
-        />
-      </div>
+  <Image
+    src="/footer-grid.svg" // Path to your grid SVG
+    alt="background grid"
+    fill  // updated boolean prop to cover container
+    style={{ objectFit: 'cover' }} // new way to set object fit
+    className="opacity-80 mix-blend-screen" // Matching opacity and blend mode from Footer
+    priority // Prioritize loading for LCP
+  />
+</div>
+
 
       <h1 className="heading text-center relative z-10"> {/* Added relative z-10 to keep heading above grid */}
         Few of my{" "}

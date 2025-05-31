@@ -1,12 +1,17 @@
+"use client";
+
 import { useState } from "react";
 import { IoCopyOutline } from "react-icons/io5";
-import Lottie from "react-lottie";
+import dynamic from "next/dynamic";
 import { cn } from "@/lib/utils";
-
 import { BackgroundGradientAnimation } from "./GradientBg";
 import GridGlobe from "./GridGlobe";
 import animationData from "@/data/confetti.json";
 import MagicButton from "../MagicButton";
+import type { LottieProps } from "lottie-react";
+
+// Dynamically import LottieWrapper with props typing
+const Lottie = dynamic<LottieProps>(() => import("./LottieWrapper"), { ssr: false });
 
 export const BentoGrid = ({
   className,
@@ -50,19 +55,28 @@ export const BentoGridItem = ({
   const rightLists = ["VueJS", "NuxtJS", "GraphQL"];
   const [copied, setCopied] = useState(false);
 
-  const defaultOptions = {
-    loop: copied,
-    autoplay: copied,
-    animationData: animationData,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
+  const handleCopy = () => {
+    if (navigator.clipboard) {
+      navigator.clipboard
+        .writeText("akshatsrivastava11d@gmail.com")
+        .then(() => {
+          setCopied(true);
+          setTimeout(() => setCopied(false), 2000);
+        })
+        .catch((err) => {
+          console.error("Failed to copy text: ", err);
+        });
+    } else {
+      console.warn("Clipboard API not available.");
+    }
   };
 
-  const handleCopy = () => {
-    const text = "akshatsrivastava11d@gmial.com";
-    document.execCommand('copy'); // Using document.execCommand for clipboard copy
-    setCopied(true);
+  const gradientTextStyle = {
+    backgroundImage: "linear-gradient(to right, #A78BFA, #F472B6, #A78BFA)",
+    WebkitBackgroundClip: "text" as const,
+    WebkitTextFillColor: "transparent" as const,
+    backgroundClip: "text" as const,
+    color: "transparent" as const,
   };
 
   return (
@@ -71,27 +85,28 @@ export const BentoGridItem = ({
         "row-span-1 relative overflow-hidden rounded-3xl border border-white/[0.1] group/bento hover:shadow-xl transition duration-200 shadow-input dark:shadow-none justify-between flex flex-col space-y-4",
         className
       )}
-      style={{
-        // Changed background to solid black
-        background: "black",
-      }}
+      style={{ background: "black" }}
     >
-      <div className={`${id === 6 && "flex justify-center"} h-full`}>
+      <div className={`${id === 6 ? "flex justify-center" : ""} h-full`}>
         <div className="w-full h-full absolute">
           {img && (
             <img
               src={img}
-              alt={img}
+              alt={typeof img === "string" ? img : "image"}
               className={cn(imgClassName, "object-cover object-center")}
             />
           )}
         </div>
 
-        <div className={`absolute right-0 -bottom-5 ${id === 5 && "w-full opacity-80"}`}>
+        <div
+          className={`absolute right-0 -bottom-5 ${
+            id === 5 ? "w-full opacity-80" : ""
+          }`}
+        >
           {spareImg && (
             <img
               src={spareImg}
-              alt={spareImg}
+              alt={typeof spareImg === "string" ? spareImg : "spare image"}
               className="object-cover object-center w-full h-full"
             />
           )}
@@ -109,17 +124,22 @@ export const BentoGridItem = ({
             "group-hover/bento:translate-x-2 transition duration-200 relative md:h-full min-h-40 flex flex-col px-5 p-5 lg:p-10"
           )}
         >
-          {/* Description with gradient text color */}
-          <div className="font-sans font-extralight md:max-w-32 md:text-xs lg:text-base text-sm z-10
-                          bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent drop-shadow-sm">
-            {description}
-          </div>
-
-          {/* Title with gradient text color */}
-          <div className="font-sans text-lg lg:text-3xl max-w-96 font-bold z-10
-                          bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 bg-clip-text text-transparent drop-shadow-2xl">
-            {title}
-          </div>
+          {description && (
+            <div
+              className="font-sans font-extralight text-sm md:text-xs lg:text-base z-10"
+              style={gradientTextStyle}
+            >
+              {description}
+            </div>
+          )}
+          {title && (
+            <div
+              className="font-sans text-lg lg:text-3xl font-bold z-10"
+              style={gradientTextStyle}
+            >
+              {title}
+            </div>
+          )}
 
           {id === 2 && <GridGlobe />}
 
@@ -152,10 +172,16 @@ export const BentoGridItem = ({
 
           {id === 6 && (
             <div className="mt-5 relative">
-              <div className={`absolute -bottom-5 right-0 ${copied ? "block" : "block"}`}>
-                <Lottie options={defaultOptions} height={200} width={400} />
-              </div>
-
+              {copied && (
+                <div className="absolute -bottom-5 right-0">
+                  <Lottie
+                    animationData={animationData}
+                    loop
+                    autoplay
+                    style={{ height: 200, width: 400 }}
+                  />
+                </div>
+              )}
               <MagicButton
                 title={copied ? "Email is Copied!" : "Copy my email address"}
                 icon={<IoCopyOutline />}
